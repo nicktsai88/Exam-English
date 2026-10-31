@@ -116,6 +116,8 @@
     .deep-teaching summary { padding: .85rem 1rem; color: #5b21b6; background: rgba(255,255,255,.78); font-weight: 900; cursor: pointer; list-style-position: inside; }
     .deep-teaching[open] summary { border-bottom: 1px solid #d8b4fe; }
     .teaching-body { padding: .9rem; }
+    .option-analysis-panel { margin-top: .7rem; padding: .85rem; border: 1px solid #bbf7d0; border-radius: 1rem; background: #f7fffb; }
+    .option-analysis-panel h4 { margin: 0 0 .65rem; color: #166534; }
     .teaching-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: .65rem; margin-bottom: .75rem; }
     .teaching-block { min-width: 0; padding: .75rem; border-radius: .85rem; background: #fff; border: 1px solid #cbd5e1; line-height: 1.65; overflow-wrap: anywhere; }
     .teaching-block strong { display: block; margin-bottom: .3rem; color: #075985; }
@@ -392,10 +394,10 @@
         <p class="passage-note">本篇文章供 ${group.questionIds.map(id=>displayLabel(QUESTIONS.find(q=>q.id===id))).join("、")} 共用。文章只呈現一次；往下逐題查看各題選項與教學。</p>
       </section>`;
     }
-    function deepTeachingHtml(q, analysis) {
+    function deepTeachingHtml(q) {
       const steps=q.deep.steps.map(step=>`<li>${escapeHtml(step)}</li>`).join("");
       return `<details class="deep-teaching">
-        <summary>📚 展開深度教學（題意、規則、推理與四選項解析）</summary>
+        <summary>📚 展開深度教學（題意、規則與推理步驟）</summary>
         <div class="teaching-body">
           <div class="teaching-grid">
             <div class="teaching-block"><strong>① 題意定位</strong>${escapeHtml(q.deep.task)}</div>
@@ -404,7 +406,6 @@
           </div>
           <div class="teaching-block"><strong>④ 推理步驟</strong><ol class="reasoning-steps">${steps}</ol></div>
           <div class="takeaway">🎓 一句帶走：${escapeHtml(q.deep.takeaway)}</div>
-          <h4>⑤ A、B、C、D 逐項驗證</h4><div class="analysis-grid">${analysis}</div>
         </div>
       </details>`;
     }
@@ -418,7 +419,7 @@
         <div class="image-frame"><img class="question-image" loading="lazy" src="${q.image}" alt="${displayLabel(q)} ${q.groupId?"原卷選項列":"原卷題幹與 A、B、C、D 四個選項"}">${makeHighlights(q)}</div>
         <div class="image-actions">${q.groupId?`<button class="zoom-btn" data-group-jump="${q.groupId}">📖 回到共用文章</button><button class="zoom-btn" data-group-zoom>🔎 放大文章線索</button>`:""}<button class="zoom-btn" data-zoom>🔎 放大${q.groupId?"選項":"題目"}</button></div>
         <div class="answer-buttons" role="group" aria-label="${displayLabel(q)} 作答按鈕">${buttons}</div>${feedback}
-        ${revealed?`<div class="answer-reveal">✅ 正確答案：${q.answer}｜💡 ${escapeHtml(q.focus)}</div>${deepTeachingHtml(q,analysis)}`:""}
+        ${revealed?`<div class="answer-reveal">✅ 正確答案：${q.answer}｜💡 ${escapeHtml(q.focus)}</div><section class="option-analysis-panel"><h4>🔎 A、B、C、D 選項解析</h4><div class="analysis-grid">${analysis}</div></section>${deepTeachingHtml(q)}`:""}
       </article>`;
     }
     function escapeHtml(value){return String(value).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));}
