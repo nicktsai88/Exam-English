@@ -98,11 +98,14 @@
     .explain-item.good { border-color: #8ed4a9; background: var(--green-bg); }
     .explain-item.bad { border-color: #f1b7b2; background: #fffafa; }
     .explain-letter { font-weight: 950; margin-right: .25rem; }
-    .correct-teaching { margin: 0 .75rem .85rem; border: 1px solid #b7d8c4; border-radius: 16px; overflow: hidden; background: linear-gradient(145deg, #f5fff8, #f8fbff); }
-    .correct-teaching summary { cursor: pointer; padding: .82rem .95rem; background: linear-gradient(90deg, #dcfce7, #eaf7ff); color: #17663a; font-weight: 950; list-style-position: inside; }
+    .correct-teaching { margin: 0 .75rem .85rem; border: 1px solid #c9c2f0; border-radius: 16px; overflow: hidden; background: linear-gradient(145deg, #fbfaff, #f5f8ff); }
+    .correct-teaching summary { cursor: pointer; padding: .82rem .95rem; background: linear-gradient(90deg, #ebe5ff, #e6f1ff); color: #493991; font-weight: 950; list-style-position: inside; transition: background .18s ease, color .18s ease; }
+    .correct-teaching summary:hover { background: linear-gradient(90deg, #dfd7ff, #dceaff); color: #382978; }
+    .correct-teaching[open] { box-shadow: inset 0 3px 0 #7a68d8; }
+    .correct-teaching[open] summary { background: linear-gradient(90deg, #e2dcff, #dfeeff); border-bottom: 1px solid #c9c2f0; }
     .correct-teaching summary:focus-visible { outline: 3px solid #5c8fd8; outline-offset: -3px; }
     .teaching-body { padding: .9rem; }
-    .teaching-lead { margin: 0 0 .75rem; padding: .7rem .8rem; border-left: 4px solid #2e9c63; border-radius: 0 10px 10px 0; background: white; }
+    .teaching-lead { margin: 0 0 .75rem; padding: .7rem .8rem; border-left: 4px solid #7462d4; border-radius: 0 10px 10px 0; background: white; }
     .form-note { margin: 0 0 .85rem; padding: .68rem .78rem; border: 1px solid #c9d9f2; border-radius: 10px; background: #f5f8ff; color: #344f7a; }
     .form-note strong { color: #274777; }
     .teaching-steps { margin: 0 0 .9rem; padding-left: 1.45rem; }
@@ -373,8 +376,8 @@
 
   function makeTeaching(q) {
     const teaching = q.teaching;
-    const details = document.createElement("details"); details.className = "correct-teaching"; details.open = true;
-    const summary = document.createElement("summary"); summary.textContent = `✅ 正確選項 ${q.answer}（${q.correctForm}）深度教學`;
+    const details = document.createElement("details"); details.className = "correct-teaching"; details.open = false;
+    const summary = document.createElement("summary"); summary.textContent = `✅ 正確選項 深度教學｜${q.answer}（${q.correctForm}）`;
     const body = document.createElement("div"); body.className = "teaching-body";
     const lead = document.createElement("p"); lead.className = "teaching-lead"; lead.textContent = `本題核心：${teaching.focus}`;
     const formNote = document.createElement("p"); formNote.className = "form-note"; const formLabel = document.createElement("strong"); formLabel.textContent = "字形／變化補充："; formNote.append(formLabel, document.createTextNode(teaching.formNote));
