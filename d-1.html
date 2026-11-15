@@ -1,0 +1,1031 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>九年級英文錯題解析與列印練習</title>
+  <style>
+    :root {
+      --ink: #183247;
+      --muted: #5f7180;
+      --teal: #157a7e;
+      --teal-soft: #e8f5f4;
+      --coral: #e7644a;
+      --coral-soft: #fff0eb;
+      --gold: #d79a2b;
+      --gold-soft: #fff8e7;
+      --line: #d7e0e6;
+      --paper: #ffffff;
+      --desk: #eef2f4;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--desk);
+      font-family: "Microsoft JhengHei", "PingFang TC", Arial, sans-serif;
+      line-height: 1.58;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      padding: 12px;
+      color: #fff;
+      background: rgba(24, 50, 71, 0.96);
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.18);
+    }
+
+    .toolbar button, .toolbar a {
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      border-radius: 999px;
+      padding: 8px 15px;
+      color: #fff;
+      background: rgba(255, 255, 255, 0.12);
+      font: inherit;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .toolbar button.primary { background: var(--coral); border-color: var(--coral); }
+    .toolbar button:hover, .toolbar a:hover { filter: brightness(1.12); }
+
+    main { padding: 20px 0 40px; }
+
+    .page {
+      width: min(210mm, calc(100% - 24px));
+      min-height: 274mm;
+      margin: 0 auto 20px;
+      padding: 15mm 16mm;
+      background: var(--paper);
+      box-shadow: 0 5px 24px rgba(30, 53, 68, 0.13);
+      page-break-after: always;
+      break-after: page;
+      overflow: hidden;
+    }
+
+    .page:last-child { page-break-after: auto; break-after: auto; }
+
+    .cover {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background:
+        radial-gradient(circle at 92% 10%, rgba(21, 122, 126, 0.16) 0 70px, transparent 71px),
+        linear-gradient(155deg, #fff 0 67%, #f1f8f7 67% 100%);
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 12px;
+      color: var(--teal);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      max-width: 620px;
+      margin: 0;
+      font-size: clamp(34px, 5vw, 56px);
+      line-height: 1.12;
+      letter-spacing: -0.03em;
+    }
+
+    .subtitle {
+      max-width: 610px;
+      margin: 18px 0 0;
+      color: var(--muted);
+      font-size: 19px;
+    }
+
+    h2 {
+      margin: 0 0 14px;
+      padding-bottom: 8px;
+      color: var(--ink);
+      font-size: 25px;
+      line-height: 1.25;
+      border-bottom: 3px solid var(--teal);
+    }
+
+    h3 {
+      margin: 20px 0 8px;
+      color: var(--teal);
+      font-size: 18px;
+    }
+
+    h4 { margin: 13px 0 6px; font-size: 15px; }
+
+    p { margin: 7px 0; }
+
+    .hero-rule {
+      width: 90px;
+      height: 7px;
+      margin: 24px 0;
+      border-radius: 99px;
+      background: var(--coral);
+    }
+
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0; }
+
+    .chip {
+      border: 1px solid #b8d7d6;
+      border-radius: 999px;
+      padding: 6px 11px;
+      color: #13666a;
+      background: #f2fbfa;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin: 20px 0;
+    }
+
+    .metric {
+      min-height: 118px;
+      padding: 15px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.9);
+    }
+
+    .metric b { display: block; color: var(--coral); font-size: 31px; line-height: 1; }
+    .metric span { display: block; margin-top: 9px; color: var(--muted); font-size: 13px; }
+
+    .callout {
+      margin: 14px 0;
+      padding: 13px 15px;
+      border-left: 5px solid var(--teal);
+      border-radius: 8px;
+      background: var(--teal-soft);
+    }
+
+    .callout.warning { border-left-color: var(--gold); background: var(--gold-soft); }
+    .callout.coral { border-left-color: var(--coral); background: var(--coral-soft); }
+    .callout strong { color: var(--ink); }
+
+    .footer-note {
+      margin-top: auto;
+      padding-top: 16px;
+      color: var(--muted);
+      font-size: 12px;
+      border-top: 1px solid var(--line);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 10px 0 16px;
+      font-size: 13px;
+    }
+
+    th, td {
+      padding: 8px 9px;
+      text-align: left;
+      vertical-align: top;
+      border: 1px solid var(--line);
+    }
+
+    th { color: #fff; background: var(--ink); }
+    tr:nth-child(even) td { background: #f8fafb; }
+    td:first-child { width: 14%; font-weight: 800; }
+
+    .bad { color: #a33d2b; text-decoration: line-through; text-decoration-thickness: 1px; }
+    .good { color: #0f6e63; font-weight: 800; }
+    .note { color: var(--muted); font-size: 12px; }
+
+    code, .formula {
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+    code {
+      padding: 1px 5px;
+      border-radius: 5px;
+      color: #79412e;
+      background: #fff1e8;
+      white-space: normal;
+    }
+
+    .formula {
+      margin: 9px 0;
+      padding: 11px 13px;
+      border: 1px dashed #8bbdbc;
+      border-radius: 10px;
+      color: #0e6669;
+      background: #f4fbfa;
+      font-weight: 800;
+      text-align: center;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin: 12px 0;
+    }
+
+    .card {
+      padding: 13px 14px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #fff;
+      break-inside: avoid;
+    }
+
+    .card h3, .card h4 { margin-top: 0; }
+
+    .steps {
+      counter-reset: step;
+      margin: 12px 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .steps li {
+      position: relative;
+      min-height: 36px;
+      margin: 9px 0;
+      padding-left: 43px;
+    }
+
+    .steps li::before {
+      counter-increment: step;
+      content: counter(step);
+      position: absolute;
+      left: 0;
+      top: -1px;
+      display: grid;
+      width: 30px;
+      height: 30px;
+      place-items: center;
+      border-radius: 50%;
+      color: #fff;
+      background: var(--teal);
+      font-weight: 800;
+    }
+
+    .mini-list { margin: 7px 0; padding-left: 21px; }
+    .mini-list li { margin: 5px 0; }
+
+    .example {
+      margin: 8px 0;
+      padding: 9px 11px;
+      border-radius: 8px;
+      background: #f7f9fa;
+      border: 1px solid #e3e9ed;
+    }
+
+    .arrow { color: var(--coral); font-weight: 900; }
+
+    .student-head {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+      margin: 12px 0 18px;
+      font-size: 13px;
+    }
+
+    .fill-line { display: inline-block; min-width: 145px; border-bottom: 1px solid var(--ink); }
+
+    .exercise {
+      margin: 9px 0;
+      padding-left: 28px;
+      text-indent: -28px;
+      break-inside: avoid;
+    }
+
+    .exercise .blank {
+      display: inline-block;
+      min-width: 115px;
+      height: 1.4em;
+      vertical-align: bottom;
+      border-bottom: 1px solid #455b6a;
+    }
+
+    .wide-lines {
+      margin: 6px 0 12px 28px;
+      height: 32px;
+      border-bottom: 1px solid #9aa9b4;
+    }
+
+    .wide-lines.two {
+      height: 54px;
+      background: repeating-linear-gradient(to bottom, transparent 0 26px, #b8c4cb 27px 28px);
+      border: 0;
+    }
+
+    .question-block {
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+
+    .word-bank {
+      margin: 12px 0;
+      padding: 10px 13px;
+      border: 2px solid var(--teal);
+      border-radius: 10px;
+      background: #f8ffff;
+      text-align: center;
+      word-spacing: 16px;
+      font-weight: 800;
+    }
+
+    .score-box {
+      float: right;
+      min-width: 105px;
+      padding: 7px 10px;
+      border: 2px solid var(--ink);
+      border-radius: 8px;
+      text-align: center;
+      font-weight: 800;
+    }
+
+    .answer-pages { background: #fffefb; }
+
+    .answer-item {
+      margin: 8px 0;
+      padding: 8px 10px;
+      border-left: 3px solid var(--gold);
+      background: #fffbef;
+      break-inside: avoid;
+    }
+
+    .answer-item b { color: #8a5b07; }
+
+    .checklist {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px 18px;
+      margin: 12px 0;
+    }
+
+    .checklist div::before { content: "□ "; color: var(--teal); font-weight: 900; }
+
+    .small { font-size: 12px; }
+    .center { text-align: center; }
+    .no-break { break-inside: avoid; }
+
+    body.answers-hidden .answer-pages { display: none; }
+
+    @media (max-width: 720px) {
+      .summary-grid, .cards, .checklist { grid-template-columns: 1fr; }
+      .page { min-height: auto; padding: 24px 20px; }
+      .student-head { grid-template-columns: 1fr; gap: 8px; }
+      table { font-size: 12px; }
+      th, td { padding: 6px; }
+    }
+
+    @media screen and (min-width: 1280px) {
+      body { font-size: 17px; }
+      main { padding: 28px 0 60px; }
+      .page {
+        width: min(1900px, calc(100vw - 64px));
+        min-height: auto;
+        padding: 52px clamp(58px, 5vw, 108px);
+      }
+      table { font-size: 14px; }
+      .small, .note { font-size: 13px; }
+    }
+
+    @media screen and (min-width: 2200px) {
+      body { font-size: 19px; }
+      .page {
+        width: min(2600px, calc(100vw - 120px));
+        padding: 68px clamp(88px, 5vw, 150px);
+      }
+      h1 { max-width: 900px; font-size: 68px; }
+      h2 { font-size: 31px; }
+      h3 { font-size: 21px; }
+      table { font-size: 16px; }
+      .small, .note { font-size: 14px; }
+    }
+
+    @media screen and (min-width: 3200px) {
+      body { font-size: 21px; }
+      .page {
+        width: min(3200px, calc(100vw - 160px));
+        padding: 82px clamp(120px, 5vw, 190px);
+      }
+      h1 { max-width: 1100px; font-size: 78px; }
+      h2 { font-size: 35px; }
+      h3 { font-size: 23px; }
+      table { font-size: 18px; }
+      .small, .note { font-size: 15px; }
+    }
+
+    @page { size: A4; margin: 0; }
+
+    @media print {
+      body { background: #fff; font-size: 9.7pt; line-height: 1.42; }
+      .toolbar { display: none !important; }
+      main { padding: 0; }
+      .page {
+        display: none !important;
+      }
+      .page.practice-page {
+        display: block !important;
+        width: 210mm;
+        height: 297mm;
+        min-height: 297mm;
+        margin: 0;
+        padding: 11mm 14mm;
+        box-shadow: none;
+        overflow: hidden;
+        page-break-inside: avoid;
+        break-inside: avoid-page;
+        page-break-after: always;
+        break-after: page;
+      }
+      .page.practice-page.practice-last {
+        page-break-after: auto;
+        break-after: auto;
+      }
+      .practice-page h2 { margin-bottom: 8px; font-size: 18pt; }
+      .practice-page h3 { margin: 11px 0 5px; font-size: 12.5pt; }
+      .practice-page .student-head { margin: 8px 0 12px; }
+      .practice-page .exercise { margin: 5px 0; }
+      .practice-page .wide-lines { height: 25px; margin-top: 3px; margin-bottom: 7px; }
+      .practice-page .wide-lines.two {
+        height: 44px;
+        background: repeating-linear-gradient(to bottom, transparent 0 21px, #b8c4cb 22px 23px);
+      }
+      .practice-page .word-bank { margin: 8px 0; padding: 7px 10px; }
+      .practice-page .callout { margin: 8px 0; padding: 8px 11px; }
+      .practice-page .exercise,
+      .practice-page .question-block,
+      .practice-page .word-bank,
+      .practice-page .callout,
+      .practice-page .checklist,
+      .practice-page h3 {
+        page-break-inside: avoid;
+        break-inside: avoid;
+      }
+      a { color: inherit; text-decoration: none; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="toolbar" aria-label="列印與導覽工具">
+    <a href="#analysis">看錯題分析</a>
+    <a href="#practice">跳到練習題</a>
+    <button type="button" onclick="toggleAnswers()">顯示／隱藏答案</button>
+    <button type="button" class="primary" onclick="printPractice()">列印練習題</button>
+  </nav>
+
+  <main>
+    <section class="page cover">
+      <div>
+        <span class="eyebrow">Error Analysis + Targeted Practice</span>
+        <h1>九年級英文<br>錯題解析與列印練習</h1>
+        <div class="hero-rule"></div>
+        <p class="subtitle">依第 5 回與第 6 回考卷批改痕跡整理。先找出失分規律，再用 40 題分層練習把觀念練熟。</p>
+        <div class="chips">
+          <span class="chip">被動語態</span>
+          <span class="chip">附加問句</span>
+          <span class="chip">間接問句</span>
+          <span class="chip">疑問詞 + to V</span>
+          <span class="chip">stop 的用法</span>
+          <span class="chip">字彙拼寫與詞性</span>
+        </div>
+
+        <div class="summary-grid">
+          <div class="metric"><b>15</b><span>列入分析的失分或需核對項目</span></div>
+          <div class="metric"><b>5</b><span>需要優先補強的核心觀念</span></div>
+          <div class="metric"><b>40</b><span>可直接列印作答的針對性練習</span></div>
+        </div>
+
+        <div class="callout">
+          <strong>最重要的診斷：</strong>選擇題中的基礎辨認大多做得到，真正容易失分的是「把句子改寫出來」時，沒有完整保留原句的時態、主詞、受詞與語序。
+        </div>
+      </div>
+
+      <div class="footer-note">
+        使用方式：先讀第 2 至 5 頁解析，再完成第 6 至 8 頁學生練習。隔一天只重做答錯題，最後對照第 9 至 10 頁答案。<br>
+        辨識說明：內容依掃描影像、紅筆叉號與訂正字整理；兩題可能屬於考試偏好或批改尺度，已特別標註。
+      </div>
+    </section>
+
+    <section class="page" id="analysis">
+      <h2>第 5 回：逐題錯因</h2>
+      <div class="score-box">重點：被動、附加問句</div>
+      <p class="note">表中的「學生作答」依影像辨識；字跡不完整處以最接近內容呈現。</p>
+
+      <table>
+        <thead>
+          <tr><th>題號</th><th>作答與正解</th><th>錯因與記憶點</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>字彙 9</td>
+            <td><span class="bad">rave</span><br><span class="good">brave</span></td>
+            <td>題目已給首字母 <code>b</code> 與尾字母 <code>e</code>。<code>brave</code> 是「勇敢的」；別漏掉開頭的 <code>b</code>。</td>
+          </tr>
+          <tr>
+            <td>文法 4</td>
+            <td><span class="bad">hasn't he?</span><br><span class="good">doesn't he?</span></td>
+            <td><code>has to</code> 是「必須」，不是現在完成式。一般現在式用 <code>does</code> 做附加問句。</td>
+          </tr>
+          <tr>
+            <td>文法 11</td>
+            <td><span class="bad">has written</span><br><span class="good">was written</span></td>
+            <td>書是「被 Dickens 寫」，要用被動；作品已完成，用過去式 <code>was + p.p.</code>。</td>
+          </tr>
+          <tr>
+            <td>文法 12</td>
+            <td><span class="bad">stop talk</span><br><span class="good">stop talking</span></td>
+            <td><code>stop + V-ing</code> 表示停止正在做的事。這裡是「停止說話」。</td>
+          </tr>
+          <tr>
+            <td>作答 1</td>
+            <td><span class="bad">The garbage should be picked up on the street.</span><br><span class="good">The garbage on the street should be picked up.</span></td>
+            <td>把完整受詞 <code>the garbage on the street</code> 一起移到句首，避免 <code>on the street</code> 錯掛到動作後方。</td>
+          </tr>
+          <tr>
+            <td>作答 2</td>
+            <td><span class="bad">English should be taught ...</span><br><span class="good">This book is used to teach kids English.</span></td>
+            <td>原句受詞是 <code>this book</code>，改成被動主詞；原句是一般現在式，不可自行加入 <code>should</code>。</td>
+          </tr>
+          <tr>
+            <td>作答 3</td>
+            <td><span class="good">My pet dog was found in the park by a friend of mine.</span></td>
+            <td><strong>需核對：</strong>影像中的作答似乎已接近正確。若原答案確實包含 <code>was found</code>、<code>in the park</code> 與 <code>by a friend of mine</code>，文法可成立；考試可用左列語序最穩。</td>
+          </tr>
+          <tr>
+            <td>作答 4</td>
+            <td><span class="bad">Are the women ... beautiful?</span><br><span class="good">All the women in that movie are beautiful, aren't they?</span></td>
+            <td>題目要「附加問句」，不是改成一般疑問句。肯定句後接否定附加問句。</td>
+          </tr>
+          <tr>
+            <td>作答 5</td>
+            <td><span class="bad">Was the book scary?</span><br><span class="good">Nothing scary was written in the book, was it?</span></td>
+            <td><code>nothing</code> 已有否定意思，所以附加問句用肯定 <code>was it</code>；代名詞用 <code>it</code>。</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="callout warning">
+        <strong>批改尺度提醒：</strong>作答 1 的原句在某些情境下可以理解，但考試重點是「完整名詞片語一起移動」；作答 3 從影像看來可能是可接受英文，建議帶原卷向老師確認扣分點。
+      </div>
+
+      <h3>本回已掌握的地方</h3>
+      <div class="checklist">
+        <div>能辨認基本現在、過去與未來被動</div>
+        <div>知道 <code>be filled with</code> 的搭配</div>
+        <div>能在 <code>never</code> 後選肯定附加問句</div>
+        <div>三題情境對話皆能依語意作答</div>
+      </div>
+    </section>
+
+    <section class="page">
+      <h2>第 6 回：逐題錯因</h2>
+      <div class="score-box">重點：間接問句</div>
+
+      <table>
+        <thead>
+          <tr><th>題號</th><th>作答與正解</th><th>錯因與記憶點</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>字彙 10</td>
+            <td><span class="bad">case</span><br><span class="good">create</span></td>
+            <td><code>create videos</code> 是「製作影片」。拼法是 <code>c-r-e-a-t-e</code>，不是 <code>case</code>。</td>
+          </tr>
+          <tr>
+            <td>文法 4</td>
+            <td><span class="bad">how to do</span><br><span class="good">what to do</span></td>
+            <td><code>do</code> 後面缺少受詞，所以用 <code>what</code> 同時當受詞：告訴 Sam「該做什麼」。若用 <code>how</code>，要說 <code>how to do it</code>。</td>
+          </tr>
+          <tr>
+            <td>文法 10</td>
+            <td><span class="bad">what is his name</span><br><span class="good">where he is now</span></td>
+            <td>後句說「我想找他談」，需要知道的是位置。間接問句也必須用陳述句語序：<code>where + he + is</code>。</td>
+          </tr>
+          <tr>
+            <td>作答 2</td>
+            <td><span class="bad">I don't know why they were late ...</span><br><span class="good">I don't know why the students were late for school today.</span></td>
+            <td><strong>考試偏好：</strong>有前文時 <code>they</code> 可以成立；但單獨合併成一句時，應保留 <code>the students</code>，讓指涉完整。</td>
+          </tr>
+          <tr>
+            <td>作答 4</td>
+            <td><span class="bad">I didn't tell where to go by Heidi.</span><br><span class="good">Heidi didn't tell me where to go.</span></td>
+            <td>只把 <code>where I could go</code> 縮成 <code>where to go</code>；原本主句 <code>Heidi didn't tell me</code> 必須保留，不要改成被動。</td>
+          </tr>
+          <tr>
+            <td>作答 5</td>
+            <td><span class="bad">... what time will my father come ...</span><br><span class="good">I don't know what time my father will come to pick me up.</span></td>
+            <td>間接問句不是直接問句。主詞 <code>my father</code> 要放在助動詞 <code>will</code> 前面。</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>錯題分布代表什麼？</h3>
+      <div class="cards">
+        <div class="card">
+          <h4>辨認能力比輸出能力好</h4>
+          <p>多數選擇題答對，表示不是完全不懂規則；失分發生在改寫時，容易一次漏掉兩件事，例如語序和主詞。</p>
+        </div>
+        <div class="card">
+          <h4>先保留，再改寫</h4>
+          <p>看到改寫題時，先圈出時態、主詞、受詞、地點。只改題目要求的部分，其他資訊原封不動。</p>
+        </div>
+        <div class="card">
+          <h4>間接問句要「降回陳述句」</h4>
+          <p>疑問詞留下，但倒裝取消：<code>what time will he come?</code> 變成 <code>what time he will come</code>。</p>
+        </div>
+        <div class="card">
+          <h4>寫完做三秒檢查</h4>
+          <p>問自己：主詞還在嗎？時態有變嗎？助動詞位置對嗎？動詞是否需要 <code>-ing</code> 或過去分詞？</p>
+        </div>
+      </div>
+
+      <div class="callout">
+        <strong>優先順序：</strong>先練間接問句，再練被動改寫，接著補附加問句與 <code>stop</code>。這四塊占了大部分可避免的失分。
+      </div>
+    </section>
+
+    <section class="page">
+      <h2>教學一：被動語態與改寫流程</h2>
+      <p>被動語態的核心不是背句子，而是把「承受動作的人或物」放到主詞位置。</p>
+
+      <div class="formula">主動：S + V + O　<span class="arrow">→</span>　被動：O + be + p.p. (+ by S)</div>
+
+      <h3>四種本卷最需要的形式</h3>
+      <table>
+        <thead><tr><th>時態／情態</th><th>結構</th><th>例句</th></tr></thead>
+        <tbody>
+          <tr><td>一般現在式</td><td>am / is / are + p.p.</td><td>This book <strong>is used</strong> in class.</td></tr>
+          <tr><td>一般過去式</td><td>was / were + p.p.</td><td>The novel <strong>was written</strong> in 1859.</td></tr>
+          <tr><td>未來式</td><td>will be + p.p.</td><td>The meeting <strong>will be held</strong> tomorrow.</td></tr>
+          <tr><td>情態助動詞</td><td>should / can / must + be + p.p.</td><td>The garbage <strong>should be picked up</strong>.</td></tr>
+        </tbody>
+      </table>
+
+      <h3>四步改寫法</h3>
+      <ol class="steps">
+        <li><strong>圈出完整受詞。</strong>例如不是只圈 <code>the garbage</code>，而是圈 <code>the garbage on the street</code>。</li>
+        <li><strong>把受詞移到句首。</strong>新的主詞單複數會決定 <code>be</code>。</li>
+        <li><strong>保留原時態。</strong><code>use</code> 是現在式，就用 <code>is used</code>；不要自行加入 <code>should</code>。</li>
+        <li><strong>把動詞改成過去分詞。</strong><code>write → written</code>、<code>find → found</code>、<code>pick up → picked up</code>。</li>
+      </ol>
+
+      <div class="example">
+        People use <u>this book</u> to teach kids English.<br>
+        <span class="arrow">→</span> <strong>This book is used to teach kids English.</strong>
+      </div>
+      <div class="example">
+        A friend of mine found <u>my pet dog</u> in the park.<br>
+        <span class="arrow">→</span> <strong>My pet dog was found in the park by a friend of mine.</strong>
+      </div>
+
+      <div class="callout coral">
+        <strong>常見陷阱：</strong><code>pick up</code> 是片語動詞，變被動時仍要黏在一起：<code>be picked up</code>。不能寫成 <code>be picked</code> 而把 <code>up</code> 漏掉。
+      </div>
+
+      <h3>改寫後快速自查</h3>
+      <div class="checklist">
+        <div>原本受詞是否完整移到句首</div>
+        <div><code>be</code> 是否符合時態與單複數</div>
+        <div>主要動詞是否變成 p.p.</div>
+        <div>地點、時間、不定詞是否都保留</div>
+      </div>
+    </section>
+
+    <section class="page">
+      <h2>教學二：附加問句與 stop</h2>
+
+      <h3>附加問句：先判正負，再找助動詞</h3>
+      <div class="formula">肯定陳述句 + 否定附加問句　｜　否定陳述句 + 肯定附加問句</div>
+      <ol class="steps">
+        <li><strong>判斷前句是肯定還是否定。</strong><code>never</code>、<code>nothing</code>、<code>nobody</code> 都含否定意思。</li>
+        <li><strong>找前句真正的助動詞。</strong>沒有助動詞時，依時態補 <code>do / does / did</code>。</li>
+        <li><strong>把主詞換成代名詞。</strong><code>all the women → they</code>；<code>nothing → it</code>。</li>
+      </ol>
+
+      <div class="cards">
+        <div class="card">
+          <h4>has to 不是現在完成式</h4>
+          <p>Robert <strong>has to</strong> leave, <strong>doesn't he</strong>?</p>
+          <p class="note"><code>has to</code> 的 <code>has</code> 是一般動詞片語的一部分，所以用 <code>does</code>。</p>
+        </div>
+        <div class="card">
+          <h4>否定字要接肯定尾巴</h4>
+          <p>Nothing was broken, <strong>was it</strong>?</p>
+          <p>Diana never lies, <strong>does she</strong>?</p>
+        </div>
+        <div class="card">
+          <h4>複數名詞換 they</h4>
+          <p>All the women are ready, <strong>aren't they</strong>?</p>
+        </div>
+        <div class="card">
+          <h4>兩個常考特例</h4>
+          <p>Let's go, <strong>shall we</strong>?</p>
+          <p>I'm late, <strong>aren't I</strong>?</p>
+        </div>
+      </div>
+
+      <h3>stop + V-ing 與 stop + to V</h3>
+      <table>
+        <thead><tr><th>形式</th><th>意思</th><th>例句</th></tr></thead>
+        <tbody>
+          <tr><td><code>stop + V-ing</code></td><td>停止正在做的動作</td><td>Please stop <strong>talking</strong>. 請停止說話。</td></tr>
+          <tr><td><code>stop + to V</code></td><td>停下原本的事，轉去做另一件事</td><td>We stopped <strong>to drink</strong> water. 我們停下來喝水。</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout warning">
+        <strong>判斷口訣：</strong>空格後的動作要「停止」就用 <code>V-ing</code>；空格後的動作是「停下來之後要做」就用 <code>to V</code>。
+      </div>
+
+      <h3>what to do 與 how to do it</h3>
+      <div class="example"><strong>what to do</strong> = 要做什麼。<code>what</code> 同時是 <code>do</code> 的受詞。</div>
+      <div class="example"><strong>how to do it</strong> = 要如何做那件事。<code>do</code> 後仍需要受詞 <code>it</code>。</div>
+      <p>所以本卷應寫：<code>Why don't you tell Sam <strong>what to do</strong>?</code></p>
+    </section>
+
+    <section class="page">
+      <h2>教學三：間接問句與疑問詞 + to V</h2>
+      <p>間接問句放在 <code>Do you know ...?</code>、<code>Could you tell me ...?</code>、<code>I don't know ...</code> 後面時，問句要改回陳述句語序。</p>
+
+      <div class="formula">疑問詞 + 主詞 + 動詞　（不再倒裝）</div>
+
+      <div class="example">
+        Where <u>is he</u> now? <span class="arrow">→</span> Do you know where <strong>he is</strong> now?
+      </div>
+      <div class="example">
+        What time <u>will my father come</u>? <span class="arrow">→</span> I don't know what time <strong>my father will come</strong>.
+      </div>
+      <div class="example">
+        Why <u>were the students</u> late? <span class="arrow">→</span> I don't know why <strong>the students were</strong> late.
+      </div>
+
+      <h3>三個規則</h3>
+      <ol class="steps">
+        <li><strong>保留疑問詞。</strong><code>where</code>、<code>why</code>、<code>what time</code> 都留下。</li>
+        <li><strong>取消倒裝。</strong>把主詞放回助動詞或 be 動詞前面：<code>he is</code>、<code>father will</code>。</li>
+        <li><strong>不用 do / does / did。</strong><code>Where does he live?</code> 變成 <code>where he lives</code>。</li>
+      </ol>
+
+      <div class="callout">
+        <strong>例外看起來沒變：</strong>如果疑問詞本身就是主詞，原句本來就是「主詞 + 動詞」。例如 <code>What happened?</code> 合併後仍是 <code>Could you tell me what happened?</code>。
+      </div>
+
+      <h3>Yes / No 問句：加 if 或 whether</h3>
+      <div class="example">
+        Will Ben come? <span class="arrow">→</span> I wonder <strong>if / whether Ben will come</strong>.
+      </div>
+      <p><code>whether</code> 可直接搭配 <code>or not</code>；在本階段可記成 <code>whether ... or not</code>。</p>
+
+      <h3>疑問詞 + to V 的縮寫</h3>
+      <p>當間接問句的主詞和主句所指的人相同，且語意清楚時，可以縮成疑問詞 + <code>to V</code>。</p>
+      <div class="example">
+        Heidi didn't tell me <u>where I could go</u>.<br>
+        <span class="arrow">→</span> Heidi didn't tell me <strong>where to go</strong>.
+      </div>
+      <div class="example">
+        I don't know <u>what I should do</u>.<br>
+        <span class="arrow">→</span> I don't know <strong>what to do</strong>.
+      </div>
+
+      <div class="callout coral">
+        <strong>最常見錯誤：</strong>只改子句，卻把主句也換掉。改寫 <code>where I could go</code> 時，前面的 <code>Heidi didn't tell me</code> 必須完整保留。
+      </div>
+    </section>
+
+    <section class="page practice-page" id="practice">
+      <h2>學生練習 1：字彙與被動語態</h2>
+      <div class="student-head">
+        <div>姓名：<span class="fill-line"></span></div>
+        <div>日期：<span class="fill-line"></span></div>
+      </div>
+
+      <h3>A. 字彙與詞性（每題 1 分，共 6 分）</h3>
+      <p class="small">從字庫選出適當的字；每字限用一次。</p>
+      <div class="word-bank">brave　bravely　bravery　create　creative　creation</div>
+      <div class="exercise">1. The ______ firefighter ran into the building to save a child.</div>
+      <div class="exercise">2. Mia spoke ______ even though she was nervous.</div>
+      <div class="exercise">3. It took great ______ to tell the truth.</div>
+      <div class="exercise">4. This app lets users ______ short videos easily.</div>
+      <div class="exercise">5. Leo found a ______ way to reuse the boxes.</div>
+      <div class="exercise">6. The robot is the team's newest ______.</div>
+
+      <h3>B. 被動語態（每題 2 分，共 20 分）</h3>
+      <p class="small">第 7 至 12 題選出正確答案；第 13 至 16 題依指示改寫。</p>
+      <div class="exercise">7. That castle ______ two hundred years ago.<br>　(A) built　(B) was built　(C) is built　(D) will build</div>
+      <div class="exercise">8. <em>A Tale of Two Cities</em> ______ by Charles Dickens.<br>　(A) wrote　(B) was written　(C) has wrote　(D) is writing</div>
+      <div class="exercise">9. The garbage on our street ______ every morning.<br>　(A) picks up　(B) is picked up　(C) was picking up　(D) picked</div>
+      <div class="exercise">10. The meeting ______ next Monday.<br>　(A) holds　(B) was held　(C) will be held　(D) will hold</div>
+      <div class="exercise">11. The window ______ by a ball yesterday.<br>　(A) broke　(B) is broken　(C) was broken　(D) will be broken</div>
+      <div class="exercise">12. These robots ______ to help older people walk.<br>　(A) make　(B) are made　(C) made　(D) are making</div>
+
+      <div class="question-block">
+        <div class="exercise">13. We should pick up the bottles in the park.（改為被動語態）</div>
+        <div class="wide-lines"></div>
+      </div>
+      <div class="question-block">
+        <div class="exercise">14. People use this room to store sports equipment.（改為被動語態）</div>
+        <div class="wide-lines"></div>
+      </div>
+      <div class="question-block">
+        <div class="exercise">15. A nurse found the lost child near the station.（改為被動語態）</div>
+        <div class="wide-lines"></div>
+      </div>
+      <div class="question-block">
+        <div class="exercise">16. They will hold the contest on Friday.（改為被動語態）</div>
+        <div class="wide-lines"></div>
+      </div>
+    </section>
+
+    <section class="page practice-page">
+      <h2>學生練習 2：附加問句與動詞形式</h2>
+
+      <h3>C. 附加問句（每題 2 分，共 16 分）</h3>
+      <p class="small">在空格中填入完整的附加問句。</p>
+      <div class="exercise">17. Robert has to leave now, <span class="blank"></span>?</div>
+      <div class="exercise">18. All the girls are ready, <span class="blank"></span>?</div>
+      <div class="exercise">19. Nothing was damaged, <span class="blank"></span>?</div>
+      <div class="exercise">20. Diana never lies, <span class="blank"></span>?</div>
+      <div class="exercise">21. Mr. Chen wrote the email, <span class="blank"></span>?</div>
+      <div class="exercise">22. These books were printed in Taiwan, <span class="blank"></span>?</div>
+      <div class="exercise">23. Let's take a break, <span class="blank"></span>?</div>
+      <div class="exercise">24. I'm late, <span class="blank"></span>?</div>
+
+      <h3>D. stop 與疑問詞 + to V（每題 2 分，共 12 分）</h3>
+      <p class="small">依句意填入括號內動詞的正確形式，或選出正確答案。</p>
+      <div class="exercise">25. Please stop ______ (talk) and listen to the teacher.</div>
+      <div class="exercise">26. We walked for an hour and then stopped ______ (drink) some water.</div>
+      <div class="exercise">27. The baby stopped ______ (cry) when his mother picked him up.</div>
+      <div class="exercise">28. On her way home, Amy stopped ______ (help) an old man.</div>
+      <div class="exercise">29. Ben looks helpless. Please tell him ______.<br>　(A) how to do　(B) what to do　(C) what should he do　(D) how does he do</div>
+      <div class="exercise">30. I don't know how ______ this machine.<br>　(A) use　(B) using　(C) to use　(D) to use it to</div>
+
+      <div class="callout warning no-break">
+        <strong>作答提醒：</strong>第 25 至 28 題先判斷「停止那個動作」還是「停下來去做那個動作」；第 29 題觀察 <code>do</code> 是否缺受詞。
+      </div>
+
+      <h3>自我檢查</h3>
+      <div class="checklist">
+        <div>我有先判斷主句正負</div>
+        <div>我有把名詞主詞換成代名詞</div>
+        <div>我知道 has to 要用 does</div>
+        <div>我能說明 stop V-ing 和 stop to V 的差別</div>
+      </div>
+    </section>
+
+    <section class="page practice-page practice-last">
+      <h2>學生練習 3：間接問句</h2>
+      <h3>E. 合併、選擇與改寫（每題 2 分，共 20 分）</h3>
+      <p class="small">注意：間接問句使用陳述句語序。</p>
+
+      <div class="question-block">
+        <div class="exercise">31. Could you tell me? / Where is the library?（合併句子）</div>
+        <div class="wide-lines"></div>
+      </div>
+
+      <div class="question-block">
+        <div class="exercise">32. Do you know? / What time does the movie start?（合併句子）</div>
+        <div class="wide-lines"></div>
+      </div>
+
+      <div class="question-block">
+        <div class="exercise">33. I don't know this. / Why were the students late for class?（合併句子）</div>
+        <div class="wide-lines"></div>
+      </div>
+
+      <div class="question-block">
+        <div class="exercise">34. Could you tell me? / What happened to your bike?（合併句子）</div>
+        <div class="wide-lines"></div>
+      </div>
+
+      <div class="exercise">35. Will Ben come tomorrow? I wonder ______.<br>　(A) will Ben come tomorrow　(B) whether Ben will come tomorrow<br>　(C) whether will Ben come tomorrow　(D) that Ben comes tomorrow</div>
+
+      <div class="exercise">36. I want to talk to Kevin. Do you know ______?<br>　(A) where is he now　(B) where he is now<br>　(C) what is his name　(D) where does he go</div>
+
+      <div class="question-block">
+        <div class="exercise">37. I don't know this. / What time will my father come to pick me up?（合併句子）</div>
+        <div class="wide-lines two"></div>
+      </div>
+
+      <div class="question-block">
+        <div class="exercise">38. Heidi didn't tell me where I could go.（用不定詞片語改寫）</div>
+        <div class="wide-lines"></div>
+      </div>
+
+      <div class="question-block">
+        <div class="exercise">39. I don't know what I should do.（用不定詞片語改寫）</div>
+        <div class="wide-lines"></div>
+      </div>
+
+      <div class="question-block">
+        <div class="exercise">40. Can you tell me how can I get to the bus stop?（找出並改正錯誤）</div>
+        <div class="wide-lines"></div>
+      </div>
+
+      <div class="callout no-break">
+        <strong>最後三秒：</strong>逐句用手指比一次「疑問詞 → 主詞 → 動詞」。若看到 <code>will + 主詞</code>、<code>is + 主詞</code> 或 <code>do / does / did</code>，通常要再檢查。
+      </div>
+
+      <div class="center" style="margin-top: 28px;">
+        <strong>總分：______ / 74 分</strong>
+      </div>
+    </section>
+
+    <section class="page answer-pages">
+      <h2>答案解析 1：第 1 至 24 題</h2>
+      <h3>A. 字彙與詞性</h3>
+      <div class="answer-item"><b>1. brave</b>：放在名詞 <code>firefighter</code> 前，用形容詞。</div>
+      <div class="answer-item"><b>2. bravely</b>：修飾動詞 <code>spoke</code>，用副詞。</div>
+      <div class="answer-item"><b>3. bravery</b>：放在形容詞 <code>great</code> 後作名詞，表示「勇氣」。</div>
+      <div class="answer-item"><b>4. create</b>：使役動詞 <code>let</code> 的結構是 <code>let + 人 + 原形動詞</code>，此處用原形。</div>
+      <div class="answer-item"><b>5. creative</b>：修飾名詞 <code>way</code>，用形容詞「有創意的」。</div>
+      <div class="answer-item"><b>6. creation</b>：所有格 <code>team's</code> 後接名詞，表示「創作／創造物」。</div>
+
+      <h3>B. 被動語態</h3>
+      <div class="answer-item"><b>7. B, was built</b>：<code>two hundred years ago</code> 是過去時間，城堡是被建造。</div>
+      <div class="answer-item"><b>8. B, was written</b>：書是被寫，<code>write - wrote - written</code>。</div>
+      <div class="answer-item"><b>9. B, is picked up</b>：<code>every morning</code> 表習慣，使用一般現在式被動。</div>
+      <div class="answer-item"><b>10. C, will be held</b>：<code>next Monday</code> 表未來；會議是被舉行。</div>
+      <div class="answer-item"><b>11. C, was broken</b>：<code>yesterday</code> 表過去；窗戶是被球打破。</div>
+      <div class="answer-item"><b>12. B, are made</b>：複數主詞 <code>robots</code> 搭配 <code>are</code>；<code>be made to V</code> 表「被製作用來做」。</div>
+      <div class="answer-item"><b>13.</b> The bottles in the park <strong>should be picked up</strong>.</div>
+      <div class="answer-item"><b>14.</b> This room <strong>is used</strong> to store sports equipment.</div>
+      <div class="answer-item"><b>15.</b> The lost child <strong>was found</strong> near the station by a nurse. <span class="note">by a nurse 可依題目要求保留。</span></div>
+      <div class="answer-item"><b>16.</b> The contest <strong>will be held</strong> on Friday.</div>
+
+      <h3>C. 附加問句</h3>
+      <div class="cards">
+        <div class="card"><strong>17. doesn't he</strong><br><span class="note">has to 是一般現在式。</span></div>
+        <div class="card"><strong>18. aren't they</strong><br><span class="note">girls → they。</span></div>
+        <div class="card"><strong>19. was it</strong><br><span class="note">nothing 含否定；nothing → it。</span></div>
+        <div class="card"><strong>20. does she</strong><br><span class="note">never 含否定。</span></div>
+        <div class="card"><strong>21. didn't he</strong><br><span class="note">wrote 是一般過去式。</span></div>
+        <div class="card"><strong>22. weren't they</strong><br><span class="note">前句肯定且有 were。</span></div>
+        <div class="card"><strong>23. shall we</strong><br><span class="note">Let's 的固定附加問句。</span></div>
+        <div class="card"><strong>24. aren't I</strong><br><span class="note">I am 的常用特例。</span></div>
+      </div>
+    </section>
+
+    <section class="page answer-pages">
+      <h2>答案解析 2：第 25 至 40 題</h2>
+      <h3>D. stop 與疑問詞 + to V</h3>
+      <div class="answer-item"><b>25. talking</b>：停止「說話」這個正在進行的動作，用 <code>stop V-ing</code>。</div>
+      <div class="answer-item"><b>26. to drink</b>：先停止走路，轉去喝水，用 <code>stop to V</code>。</div>
+      <div class="answer-item"><b>27. crying</b>：嬰兒不再哭，用 <code>stop V-ing</code>。</div>
+      <div class="answer-item"><b>28. to help</b>：Amy 停下原本行程，轉去幫忙，用 <code>stop to V</code>。</div>
+      <div class="answer-item"><b>29. B, what to do</b>：<code>what</code> 是 <code>do</code> 的受詞；意思是「該做什麼」。</div>
+      <div class="answer-item"><b>30. C, to use</b>：<code>how to use this machine</code> 中，<code>this machine</code> 已是 <code>use</code> 的受詞。</div>
+
+      <h3>E. 間接問句</h3>
+      <div class="answer-item"><b>31.</b> Could you tell me <strong>where the library is</strong>?<br><span class="note">不是 where is the library。</span></div>
+      <div class="answer-item"><b>32.</b> Do you know <strong>what time the movie starts</strong>?<br><span class="note">取消 does，動詞依第三人稱單數改為 starts。</span></div>
+      <div class="answer-item"><b>33.</b> I don't know <strong>why the students were late for class</strong>.<br><span class="note">保留明確主詞 the students。</span></div>
+      <div class="answer-item"><b>34.</b> Could you tell me <strong>what happened to your bike</strong>?<br><span class="note">what 是主詞，原本就不倒裝。</span></div>
+      <div class="answer-item"><b>35. B, whether Ben will come tomorrow</b>：Yes / No 問句加 <code>whether</code>，再使用陳述句語序。</div>
+      <div class="answer-item"><b>36. B, where he is now</b>：語意需要問 Kevin 在哪裡；語序是 <code>he is</code>。</div>
+      <div class="answer-item"><b>37.</b> I don't know <strong>what time my father will come to pick me up</strong>.<br><span class="note">主詞 my father 放在 will 前。</span></div>
+      <div class="answer-item"><b>38.</b> Heidi didn't tell me <strong>where to go</strong>.<br><span class="note">主句完全保留，只縮寫 where I could go。</span></div>
+      <div class="answer-item"><b>39.</b> I don't know <strong>what to do</strong>.</div>
+      <div class="answer-item"><b>40.</b> Can you tell me <strong>how I can get to the bus stop</strong>?<br><span class="note">間接問句使用 I can，不是 can I。</span></div>
+
+      <h3>錯題再練策略</h3>
+      <div class="checklist">
+        <div>錯 1 至 2 題：隔天口頭說一次規則</div>
+        <div>錯 3 至 5 題：遮住答案重寫錯題</div>
+        <div>錯 6 題以上：回到對應教學頁再做一次</div>
+        <div>改寫題每句都做「時態、主詞、語序」檢查</div>
+      </div>
+
+      <div class="callout coral">
+        <strong>最後一句話：</strong>你的問題不是「不會英文」，而是改寫時一次要顧太多資訊。固定使用步驟，就能把大量粗心失分變成穩定得分。
+      </div>
+    </section>
+  </main>
+
+  <script>
+    function toggleAnswers() {
+      document.body.classList.toggle('answers-hidden');
+    }
+
+    function printPractice() {
+      window.print();
+    }
+  </script>
+</body>
+</html>
